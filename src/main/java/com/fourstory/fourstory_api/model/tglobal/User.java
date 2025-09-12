@@ -17,12 +17,12 @@ import java.time.LocalDateTime;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dwUserID")
     private Integer id;
 
     @Column(name = "szUserID", length = 50, nullable = false, unique = true)
-    private String szUserID;
+    private String userName;
 
     @Column(name = "szPasswd", length = 50, nullable = false)
     private String password;
