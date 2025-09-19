@@ -1,6 +1,7 @@
 package com.fourstory.fourstory_api.config;
 
 import jakarta.persistence.EntityManagerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +28,7 @@ public class TGlobalConfig {
         return new DataSourceProperties();
     }
 
-    @Bean
+    @Bean(name = "tglobalDataSource")
     public DataSource tglobalDataSource() {
         return tglobalDataSourceProperties().initializeDataSourceBuilder().build();
     }
@@ -44,7 +45,9 @@ public class TGlobalConfig {
     }
 
     @Bean(name = "tglobalTransactionManager")
-    public PlatformTransactionManager tglobalTransactionManager(EntityManagerFactory tgameEntityManagerFactory) {
+    public PlatformTransactionManager tglobalTransactionManager(
+            @Qualifier("tglobalEntityManagerFactory") EntityManagerFactory tgameEntityManagerFactory
+    ) {
         return new JpaTransactionManager(tgameEntityManagerFactory);
     }
 }
