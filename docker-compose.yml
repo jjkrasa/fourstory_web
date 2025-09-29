@@ -96,15 +96,32 @@ services:
     container_name: fourstory-web-api
     ports:
       - "8080:8080"
+    secrets:
+      - private_key
+      - public_key
     environment:
       SQL_SERVER_USERNAME: ${SQL_SERVER_USERNAME}
       SQL_SERVER_PASSWORD: ${SQL_SERVER_PASSWORD}
       SQL_SERVER_TGAME_URL: ${SQL_SERVER_TGAME_URL}
       SQL_SERVER_TGLOBAL_URL: ${SQL_SERVER_TGLOBAL_URL}
+      JWT_PRIVATE_KEY_PATH: /run/secrets/private_key
+      JWT_PUBLIC_KEY_PATH: /run/secrets/public_key
+      FRONTEND_URL: ${FRONTEND_URL}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      MAIL_FROM: ${MAIL_FROM}
     restart: unless-stopped
     depends_on:
       logstash:
         condition: service_healthy
+
+secrets:
+  private_key:
+    file: ./secrets/private_key.pem
+  public_key:
+    file: ./secrets/public_key.pem
 
 volumes:
   sqlserverdata:
