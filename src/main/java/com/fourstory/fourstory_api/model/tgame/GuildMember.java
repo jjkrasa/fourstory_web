@@ -1,6 +1,5 @@
 package com.fourstory.fourstory_api.model.tgame;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +15,6 @@ public class GuildMember {
     @EmbeddedId
     private GuildMemberId id;
 
-    @JsonIgnore
     @MapsId("charId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "dwCharID", nullable = false, unique = true)

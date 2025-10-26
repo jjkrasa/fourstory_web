@@ -1,6 +1,5 @@
 package com.fourstory.fourstory_api.model.tgame;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,7 +22,6 @@ public class Guild {
     @Column(name = "szName", nullable = false, length = 50, unique = true)
     private String name;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "guild", fetch = FetchType.LAZY)
     private Set<GuildMember> characters;
 }

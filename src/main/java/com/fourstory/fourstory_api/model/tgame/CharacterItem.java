@@ -1,6 +1,5 @@
 package com.fourstory.fourstory_api.model.tgame;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fourstory.fourstory_api.model.tgame.enums.EquipSlot;
 import com.fourstory.fourstory_api.model.tgame.enums.ItemEffect;
 import jakarta.persistence.*;
@@ -29,7 +28,6 @@ public class CharacterItem {
     @Column(name = "bOwnerType", nullable = false)
     private Byte ownerType;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dwOwnerID", nullable = false, foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
     private Character character;
