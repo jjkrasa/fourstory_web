@@ -56,8 +56,8 @@ public class OutboxWorker {
                 outboxRepository.save(outbox);
             } catch (Exception ex) {
                 outbox.setAttempts(outbox.getAttempts() + 1);
-                log.warn("Outbox send failed (id={}, type={}, attempts={}): {}",
-                        outbox.getId(), outbox.getEventType().name(), outbox.getAttempts(), ex.getMessage()
+                log.warn("Outbox send failed (id={}, type={}, attempts={})",
+                        outbox.getId(), outbox.getEventType().name(), outbox.getAttempts(), ex
                 );
 
                 if (outbox.getAttempts() >= maxAttempts) {

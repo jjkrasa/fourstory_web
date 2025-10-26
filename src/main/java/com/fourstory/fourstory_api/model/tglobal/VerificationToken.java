@@ -23,18 +23,19 @@ public class VerificationToken {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(nullable = false)
+    @Column(name = "token_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private VerificationTokenType tokenType;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "token_hash", nullable = false, unique = true)
     private byte[] tokenHash;
 
-    @Column(nullable = false)
+    @Column(name = "expires_at", nullable = false)
     private Instant expiresAt;
 
+    @Column(name = "consumed_at")
     private Instant consumedAt;
 
-    @Column(length = 254)
+    @Column(name ="new_email", length = 254)
     private String newEmail;
 }

@@ -11,8 +11,8 @@ public interface OutboxRepository extends JpaRepository<Outbox, Long> {
 
     @Query(value = """
         SELECT TOP (:limit) * FROM outbox WITH (READPAST, ROWLOCK, UPDLOCK)
-        WHERE processedAt IS NULL
-        ORDER BY createdAt
+        WHERE processed_at IS NULL
+        ORDER BY created_at
         """, nativeQuery = true)
     List<Outbox> fetchBatch(@Param("limit") int limit);
 }
