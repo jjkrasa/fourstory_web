@@ -18,7 +18,8 @@ public enum ErrorCode {
     EMAIL_ALREADY_IN_USE("Email is already used", HttpStatus.CONFLICT),
     AUTHENTICATION_FAILED("Invalid email or password", HttpStatus.UNAUTHORIZED),
     EMAIL_NOT_VERIFIED("Please verify your email to sign in", HttpStatus.UNAUTHORIZED),
-    INTERNAL_SERVER_ERROR("An internal server error occurred", HttpStatus.INTERNAL_SERVER_ERROR)
+    INTERNAL_SERVER_ERROR("An internal server error occurred", HttpStatus.INTERNAL_SERVER_ERROR),
+    CHARACTER_NOT_FOUND("Character doesn't exist", HttpStatus.NOT_FOUND),
     ;
 
     private final String message;

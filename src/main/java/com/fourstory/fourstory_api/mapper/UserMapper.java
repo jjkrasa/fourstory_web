@@ -9,7 +9,7 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(
         componentModel = "spring",
         unmappedSourcePolicy = ReportingPolicy.WARN,
-        unmappedTargetPolicy = ReportingPolicy.WARN
+        unmappedTargetPolicy = ReportingPolicy.ERROR
 )
 public interface UserMapper {
 
