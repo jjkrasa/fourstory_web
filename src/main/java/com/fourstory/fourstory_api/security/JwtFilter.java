@@ -34,7 +34,10 @@ public class JwtFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
         String servletPath = request.getServletPath();
-        if (servletPath.contains("/api/v1/auth") || servletPath.contains("/api/v1/account/email-change/confirm")) {
+        if (servletPath.contains("/api/v1/auth")
+                || servletPath.contains("/api/v1/account/email-change/confirm")
+                || servletPath.contains("/api/v1/characters")
+        ) {
             filterChain.doFilter(request, response);
 
             return;
