@@ -44,7 +44,8 @@ public class CharacterService {
 
     @Transactional(readOnly = true, transactionManager = "tgameTransactionManager")
     public PageResponse<CharacterResponse> getCharacters(String name, Pageable pageable) {
-        int pageSize = Math.min(pageable.getPageSize(), 10);
+        int requestedSize = pageable.getPageSize();
+        int pageSize = Math.max(1, Math.min(requestedSize, 10));
         pageable = PageRequest.of(pageable.getPageNumber(), pageSize, pageable.getSort());
 
         Page<Character> characters = characterRepository.findByNameOrderByTotalPointDesc(
